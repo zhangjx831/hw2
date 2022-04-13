@@ -7,7 +7,7 @@ os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.databricks:spark-xml_2.12:0.
 
 from pyspark.sql import SparkSession
 spark = SparkSession.builder.getOrCreate()
-df = spark.read.format('xml').options(rowTag='page').load('hdfs:/enwiki_test.xml')
+df = spark.read.format('xml').options(rowTag='page').load('hdfs:/enwiki_whole.xml')
 
 
 
@@ -21,8 +21,8 @@ def extractLink(text):
         if ':' in res and 'Category:' not in res:
             continue
         else:
-            temp = res.split('|').lower() #all links
-            valid_links = [ x for x in temp if "#" not in x]
+            temp = res.split('|') #all links
+            valid_links = [ x.lower() for x in temp if "#" not in x]
             if len(valid_links)==0:
                 continue
             else:
@@ -39,5 +39,5 @@ newdf = df.withColumn("article", explode(link_udf(col("revision.text._VALUE"))))
 
 
 
-newdf.select('title', 'article').repartition(1).write.option("delimiter", "\t").csv('test')
+newdf.select('title', 'article').repartition(1).write.option("delimiter", "\t").csv('whole')
 
