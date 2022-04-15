@@ -1,21 +1,15 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-
-import os
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.databricks:spark-xml_2.12:0.14.0 pyspark-shell'
-
-from pyspark.sql import SparkSession
-spark = SparkSession.builder.getOrCreate()
-df = spark.read.format('xml').options(rowTag='page').load('hdfs:/enwiki_whole.xml')
-
-
-
 import re
-from pyspark.sql.functions import udf, col, explode, array
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import udf, col, explode
+from pyspark.sql.types import StringType, ArrayType
 
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.format('xml').options(rowTag='page').load('hdfs://hw2-m/enwiki_whole.xml')
 def extractLink(text):
-    results = re.findall(r'(?<=\[\[).*?(?=\]\])', text)
+    try:
+        results = re.findall(r'(?<=\[\[).*?(?=\]\])', text)
+    except:
+        results = []
     output = []
     for res in results:
         if ':' in res and 'Category:' not in res:
@@ -29,15 +23,7 @@ def extractLink(text):
                 output.append(valid_links[0])
     return output
 
-
-
-
-from pyspark.sql.types import StringType, ArrayType
-
 link_udf = udf(lambda text: extractLink(text), ArrayType(StringType()))
 newdf = df.withColumn("article", explode(link_udf(col("revision.text._VALUE"))))
-
-
-
-newdf.select('title', 'article').repartition(1).write.option("delimiter", "\t").csv('whole')
+newdf.select('title', 'article').repartition(10).write.option("delimiter", "\t").csv('p2t2_whole')
 
