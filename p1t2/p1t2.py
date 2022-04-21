@@ -24,10 +24,5 @@ def extractLink(text):
 
 link_udf = udf(lambda text: extractLink(text), ArrayType(StringType()))
 newdf = df.withColumn("article", explode(link_udf(col("revision.text._VALUE"))))
-<<<<<<< HEAD:hw2t2.py
-newdf.select('title', 'article').repartition(10).write.option("delimiter", "\t").csv('p2t2_test')
-=======
 newdf = newdf.select(lower(col('title')).alias('title'), 'article').orderBy('title', 'article')
 newdf.repartition(10).write.option("delimiter", "\t").csv('p1t2_whole')
-
->>>>>>> 71c0b8da0f84eebcc00e598c5e161d99957567cc:p1t2/p1t2.py
