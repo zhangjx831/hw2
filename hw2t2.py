@@ -4,7 +4,7 @@ from pyspark.sql.functions import udf, col, explode
 from pyspark.sql.types import StringType, ArrayType
 
 spark = SparkSession.builder.getOrCreate()
-df = spark.read.format('xml').options(rowTag='page').load('hdfs://hw2-m/enwiki_whole.xml')
+df = spark.read.format('xml').options(rowTag='page').load('hdfs://hw2-m/enwiki_test.xml')
 def extractLink(text):
     try:
         results = re.findall(r'(?<=\[\[).*?(?=\]\])', text)
@@ -25,5 +25,4 @@ def extractLink(text):
 
 link_udf = udf(lambda text: extractLink(text), ArrayType(StringType()))
 newdf = df.withColumn("article", explode(link_udf(col("revision.text._VALUE"))))
-newdf.select('title', 'article').repartition(10).write.option("delimiter", "\t").csv('p2t2_whole')
-
+newdf.select('title', 'article').repartition(10).write.option("delimiter", "\t").csv('p2t2_test')
