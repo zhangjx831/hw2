@@ -25,5 +25,5 @@ def extractLink(text):
 link_udf = udf(lambda text: extractLink(text), ArrayType(StringType()))
 newdf = df.withColumn("article", explode(link_udf(col("revision.text._VALUE"))))
 newdf = newdf.select(lower(col('title')).alias('title'), 'article').orderBy('title', 'article')
-newdf.repartition(10).write.option("delimiter", "\t").csv('p2t2_whole')
+newdf.repartition(10).write.option("delimiter", "\t").csv('p1t2_whole')
 

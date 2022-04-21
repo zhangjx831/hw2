@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit
 
 spark = SparkSession.builder.getOrCreate()
-df = spark.read.option("delimiter", "\t").csv('hdfs://hw2-m/user/root/p2t2_whole')
+df = spark.read.option("delimiter", "\t").csv('hdfs://hw2-m/user/root/p1t2_whole')
 df_count = df.groupBy("_c0").count()
 newdf = df_count.withColumn("rank", lit(1))
 newdf = newdf.rdd.map(lambda x: (x[0], x[1], x[2], x[2]/x[1])).toDF(['article', 'count', 'rank', 'contribution'])
