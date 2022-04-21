@@ -63,3 +63,18 @@ The completion time is 55 min 4 sec.
 
 ## Part 2: Spark Streamming
 
+### Task 1
+
+- Question 9
+
+There are total 1634587 articles whose rank is greater than 0.5
+
+### Task 2
+
+- Question 10
+
+The data server design is feasible because data could be transferred through TCP socket. However, it is not efficient because we already get the data on the HDFS, and we could just read the data from HDFS instead of transmitting the data through network.
+
+- Question 11
+
+We spent about 30 hours to do this programming assignment.
