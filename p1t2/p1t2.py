@@ -4,7 +4,7 @@ from pyspark.sql.functions import udf, col, explode, lower
 from pyspark.sql.types import StringType, ArrayType
 
 spark = SparkSession.builder.getOrCreate()
-df = spark.read.format('xml').options(rowTag='page').load('hdfs://hw2-m/enwiki_test.xml')
+df = spark.read.format('xml').options(rowTag='page').load('hdfs://hw2-m/enwiki_whole.xml')
 def extractLink(text):
     try:
         results = regex.findall(r'\[\[((?:[^[\]]+|(?R))*+)\]\]', text)

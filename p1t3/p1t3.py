@@ -12,5 +12,5 @@ for _ in range(10):
     newdf = df_count.join(newdf, df._c0 == newdf.article, 'left')
     newdf = newdf.na.fill(0.15)
     newdf = newdf.rdd.map(lambda x:(x[0], x[1], x[3], x[3]/x[1])).toDF(['article', 'count', 'rank', 'contribution'])
-newdf = newdf.select('article', 'rank').orderBy('rank')
+newdf = newdf.select('article', 'rank').orderBy('article', 'rank')
 newdf.repartition(10).write.option("delimiter", "\t").csv('p1t3_whole')
