@@ -23,6 +23,7 @@
 ### question 4
 
 - Cluster type: Standard Node with 2 workers
+- Block size: 64 MB
 - Job Properties
   - spark.executor.cores:  4
   - spark.driver.cores:  4
@@ -45,6 +46,7 @@
 ### question 6
 
 - Cluster type: Standard Node with 2 workers
+- Replication factors: 1
 - Job Properties
   - spark.executor.cores:  4
   - spark.driver.cores:  4
@@ -56,6 +58,7 @@
 ### question 7
 
 - Cluster type: Standard Node with 2 workers
+- Block size: 64 MB
 - Job Properties
   - spark.executor.cores:  4
   - spark.driver.cores:  4
@@ -63,12 +66,3 @@
   - spark.driver.memory:  5g
 
 
-
-### question 8
-
-- Cluster type: Standard Node with 2 workers
-- Job Properties
-  - spark.executor.cores:  4
-  - spark.driver.cores:  4
-  - spark.executor.memory:  5g
-  - spark.driver.memory:  5g
