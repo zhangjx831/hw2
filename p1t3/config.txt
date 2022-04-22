@@ -1,0 +1,9 @@
+### question 8
+
+- Cluster type: Standard Node with 2 workers
+- Job Properties
+  - spark.executor.cores:  4
+  - spark.driver.cores:  4
+  - spark.executor.memory:  5g
+  - spark.driver.memory:  5g
+

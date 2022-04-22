@@ -4,58 +4,58 @@
 
 ### Task1
 
-- question 1
+- Question 1
 
 The default block size on HDFS is 128 MB. The default replication factor of HDFS is 2.
 
 ### Task2
 
-- question 2
+- Question 2
 
 
 <img src="p1t2/q2.png" alt="q2" style="zoom:50%;" />
 
 The completion time is 6 min 30 sec.
 
-- question 3
+- Question 3
 
 
 <img src="p1t2/q3.png" alt="q3" style="zoom:50%;" />
 
-The completion time is 4 min 12 sec, which is much shorter than running on a single node with 4 course. The performance gets better becuase it uses 2 worker nodes in which they distribute the workload and run faster.
+The completion time is 4 min 12 sec, which is much shorter than running on a single node with 4 cores. The performance gets better becuase it uses 2 worker nodes in which they distribute the workload and run faster.
 
-- question 4
+- Question 4
 
 
 <img src="p1t2/q4.png" alt="q4" style="zoom:50%;" />
 
-The completion time is 4 min 15 sec, which is very similar to the one under the default block size in HDFS. 
+The completion time is 4 min 15 sec, which is very similar to the one under the default block size in HDFS, which means the block size doesn't affect the completion time a lot.
 
-- question 5
+- Question 5
 
 
 <img src="p1t2/Q5_1.png" alt="Q5_1" style="zoom:50%;" />
 
 <img src="p1t2/Q5_2.png" alt="Q5_2" style="zoom:50%;" />
 
-The job still finishes, but the completion time gets longer. Since one of the worker nodes was killed, there is now only one worker node running on the program, so the job is still processing but it runs slower.
+The original program takes 49 min 53 sec to finish. If killed one of the worker node, the job still finishes, but the completion time gets longer about 2 times of the orignial running time. Since one of the worker nodes was killed, there is now only one worker node running on the program, so the job is still processing but it runs slower.
 
-- question 6
+- Question 6
 
 
 <img src="p1t2/Q6.png" alt="Q6" style="zoom:50%;" />
 
-The completion time is similar, because the loss of data is trivial for this program.
+The job still finished, which meaned there was no data node loss. Therefore, the completion time is similar, because the spark engine does not need to read the replicated data and the loss of data is trivial for this problem.
 
-- question 7
+- Question 7
 
 <img src="p1t2/Q7.png" alt="Q7" style="zoom:50%;" />
 
-The completion time is similar.
+The completion time is 54 min 5 sec, which is similar to the original program. The block size doesn't affect the completion time a lot.
 
 ### Task3
 
-- question 8
+- Question 8
 
 <img src="p1t3/Q8.png" alt="Q8" style="zoom:50%;" />
 

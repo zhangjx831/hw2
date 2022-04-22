@@ -1,0 +1,8 @@
+### question 1
+
+- Cluster type: Single Node
+- Job Properties
+  - spark.executor.cores:  4
+  - spark.driver.cores:  4
+  - spark.executor.memory:  5g
+  - spark.driver.memory:  1g

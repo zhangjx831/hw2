@@ -1,0 +1,32 @@
+1. Use the program in Part 1 Task 2 to take “*enwiki_small.xml*” as input to generate the graph.
+
+Modify the input output path of the program in Part 1 Task 2 to generate the graph
+
+- Cluster type: Single Node
+- Job Properties
+  - spark.executor.cores:  4
+  - spark.driver.cores:  4
+  - spark.executor.memory:  5g
+  - spark.driver.memory:  1g
+
+2. Use the program in Part 1 Task 3 to take the graph you just generated and output a rank list of the articles in the dataset.
+
+Set the input as the output of Task 2 and output the rank of articles.
+
+- Cluster type: Single Node
+- Job Properties
+  - spark.executor.cores:  4
+  - spark.driver.cores:  4
+  - spark.executor.memory:  5g
+  - spark.driver.memory:  1g
+
+3. Use the stream emitter you wrote in Part 2 Task 2 to emit the rank list output in the previous step to a local directory while using the stream receiver you wrote in Part 2 Task 1 to dynamically read the files and generate the output mentioned in Part 2 Task 1.
+
+Use the stream reader to read the files and stream writer to write to the output path.
+
+- Cluster type: Single Node
+- Job Properties
+  - spark.executor.cores:  4
+  - spark.driver.cores:  4
+  - spark.executor.memory:  5g
+  - spark.driver.memory:  1g
